@@ -9,9 +9,11 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    #runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v6
     - name: Install fuse and libfuse2
       run: sudo apt install fuse libfuse2
 
@@ -52,12 +54,12 @@ jobs:
         pwd; ls -lah
         mv "${fileName}" "${fileName}".zsync "${fileName}".md5 WinRAR_AppImage/
 
-    - uses: xresloader/upload-to-github-release@main
+    - uses: xresloader/upload-to-github-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         file: "WinRAR*.AppImage; WinRAR*.zsync; WinRAR*.md5"
-        release_id: ${{ steps.create_release.outputs.id }}
+        #overwrite: true
         verbose: true
         draft: false
         default_release_name: "WinRAR V in AppImage"
