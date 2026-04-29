@@ -8,7 +8,7 @@ WinRAR is a file archiver and compression utility for Microsoft Windows
 https://www.win-rar.com/
 
 ## Repository: https://github.com/ryuuzaki42/WinRAR_AppImage
-     WinRAR: 7.20
+     WinRAR: 7.21
 ---
 ### To change font size, change the DPI value in LogPixels
 In the user.reg in `~/.config/WinRAR_AppImage/user.reg`
