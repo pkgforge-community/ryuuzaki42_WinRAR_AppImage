@@ -17,12 +17,10 @@ jobs:
     - name: Install fuse and libfuse2
       run: sudo apt install fuse libfuse2
 
-    - name: appimagetool
+    - name: Get appimagetool
       run: |
         set -x
         cd ../
-
-        #wget -q https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
         version_go_appimage=$(wget -q -O - https://api.github.com/repos/probonopd/go-appimage/releases | grep "\"name.*appimagetool-.*-x86_64.AppImage\"" | head -n 1 | cut -d '-' -f2)
         echo "version_go_appimage: $version_go_appimage"
         wget -q "https://github.com/probonopd/go-appimage/releases/download/continuous/appimagetool-$version_go_appimage-x86_64.AppImage" -O appimagetool-x86_64.AppImage
@@ -32,9 +30,11 @@ jobs:
     - name: Make AppImage
       run: |
         set -x
+        tag=1 #1
         version=$(grep -o "WinRAR:.*" README.md | cut -d ' ' -f2)
-        echo "WinRAR version: $version"
-        rm -rv .git/ .github/ .gitignore
+        echo "WinRAR version: $version - Tag: $tag"
+
+        rm -rv .git/ .github/ .gitignore # Remove folders/files not needed
 
         ## Aded key / crack
         wget https://raw.githubusercontent.com/Fonkelflare/winrar-rarreg.key/main/rarreg.key -O drive_c/WinRAR/rarreg.key
@@ -47,7 +47,6 @@ jobs:
       run: |
         set -x
         cd ../
-
         fileName=$(ls WinRAR*.AppImage)
         echo "fileName: $fileName"
         md5sum "${fileName}" > "${fileName}".md5
