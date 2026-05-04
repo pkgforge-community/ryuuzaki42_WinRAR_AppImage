@@ -1,6 +1,12 @@
                 WinRAR - What's new in the latest version
 
 
+  Version 7.22
+
+  1. Deleting from solid archives reverted to pre-7.20 state to finalize
+     the fix in WinRAR 7.21 and avoid potential checksum errors.
+
+  
   Version 7.21
 
   1. WinRAR properly recognizes archives with a wrong file extension,
